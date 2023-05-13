@@ -86,34 +86,21 @@ def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
-    # Create a magic square
-    grid = [
-        [8, 1, 6],
-        [3, 5, 7],
-        [4, 9, 2]
-    ]
-
-    # Create variable sum for X and O
-    X_sum = 0
-    O_sum = 0
-
-    # Loop through each square in board
+    # Check row
     for i in range(len(board)):
-        for j in range(len(board[i])):
-            # Check if square is X then add correspond value with grid to sum of X
-            if board[i][j] == "X":
-                X_sum += grid[i][j]
-            # Check if square is O then add correspond value with grid to sum of O
-            elif board[i][j] == "O":
-                O_sum += grid[i][j]
+        if board[i][0] == board[i][1] == board[i][2] and board[i][0] != EMPTY:
+            return board[i][0]
 
-    # Check the sum of X and O
-    # if sum equal 15 which means it either creates a row or column or diagonal then we return winner otherwise none
-    if X_sum == 15:
-        return X
-    elif O_sum == 15:
-        return O
-    return None
+    # Check column
+    for j in range(len(board)):
+        if board[0][j] == board[1][j] == board[2][j] and board[0][j] != EMPTY:
+            return board[0][j]
+
+    # Check diagonal
+    if board[0][0] == board[1][1] == board[2][2]:
+        return board[0][0]
+    if board[2][0] == board[1][1] == board[0][2]:
+        return board[2][0]
 
 
 def terminal(board):
@@ -121,7 +108,7 @@ def terminal(board):
     Returns True if game is over, False otherwise.
     """
     # Check if there is any avaliable square in actions function or there is a winner
-    if actions(board) == None or winner(board) != None:
+    if actions(board) == None or winner(board):
         return True
     return False
 
