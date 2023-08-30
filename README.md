@@ -36,7 +36,11 @@ The minimax function should take a board as input, and return the optimal move f
 ## How to run
 
 1. Clone this project
-2. Run command line in terminal:
+2. Install requirements package:
+   ```
+   pip install -r requirements.txt
+   ```
+3. Run the Tic Tac Toe game:
    ```
    python runner.py
    ```
